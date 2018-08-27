@@ -1,0 +1,797 @@
+@charset "utf-8";
+
+html {
+    font-size: 62.5%;
+}
+
+//自動でrem数値へ変更してくれる関数
+@mixin fontsize($size: 24, $base: 10) {
+    font-size: $size + px;
+    font-size: ($size / $base) * 1rem;
+}
+
+//フォント設定・基本色の設定
+$ja_font: "ヒラギノ角ゴ Pro W3",
+"Hiragino Kaku Gothic Pro",
+メイリオ,
+Verdana,
+"ＭＳ Ｐゴシック",
+sans-serif;
+$brown1: #887f69;
+$brown2: #e2ddd4;
+$glay: #b0b0b0;
+$red: #9d1a2d;
+$glay_brown: #f9f8f6;
+
+body {
+    font-size: 1.2rem;
+    font-family: $ja_font;
+    line-height: 1.8;
+    letter-spacing: 0.1em;
+    background-color: $glay_brown;
+}
+
+img {
+    max-width: 100%;
+}
+
+//---------------------headerの設定---------------------
+header {
+
+    background: $glay_brown;
+
+    #header_in {
+        padding-top: 15px;
+        padding-bottom: 0px;
+
+    }
+
+
+
+    h1 {
+        margin: 0;
+        padding: 0 0 10px;
+
+    }
+
+
+    ul li {
+        display: inline-block;
+        margin: 5px;
+    } //---------------------スマホメニューの設定---------------------
+    @media (max-width: 550px) {
+
+        text-align: center;
+
+        .pc_navi {
+            display: none;
+        }
+
+
+        #contact {
+
+            .sp_navi {
+                ul {
+                    margin: 5px;
+                }
+            }
+
+
+            .sp_navi_li {
+                width: 100%;
+                position: absolute;
+                top: 124px;
+                left: 0;
+                border: 1px solid #eee;
+                background: #ff6d77; // ←ピンク
+                text-align: left;
+                margin: 0;
+                padding: 10px;
+                display: none; //追加してスマホメニューを非表示にする
+                z-index: 100; //追記
+                li {
+                    list-style: none;
+                    margin: 0;
+                    display: block;
+
+                    a {
+                        display: block;
+                        padding: 15px 15px;
+                        font-size: 14px;
+                        color: #fff;
+                        text-decoration: none;
+                        border-bottom: 1px solid #fff;
+
+                    }
+                }
+            } //.sp_navi_li
+        } //#contact
+    } // @media (max-width: 550px)
+    //pc_header
+    @media (min-width: 551px) {
+
+        .sp_navi {
+            display: none;
+        }
+
+        .facebook,
+        .insta {
+            img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .pc_navi_li {
+
+            margin: 0;
+            padding: 13px 0 0;
+            float: right;
+
+            li {
+                a {
+                    color: #524c3e;
+                    text-decoration: none;
+                    font-weight: bold;
+                    @include fontsize(14);
+                    float: left;
+                    padding-left: 5px;
+                }
+
+                a:hover {
+                    color: $brown1;
+                }
+
+            } //li
+        } //.pc_navi_li
+    } //@media (min-width: 551px)    
+} //header
+//---------------------Itemsの設定---------------------
+.title {
+    text-align: center;
+    padding: 10px;
+}
+
+.new_item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; // ���の行に改行するための方法
+    padding-bottom: 10px;
+
+    .box {
+        background: #fff;
+        margin: 1px;
+        width: 45%;
+        padding: 10px;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+}
+
+@media (min-width: 551px) {
+
+    .new_item {
+
+        .box {
+            width: 30%;
+
+        }
+    }
+
+    .title {
+        display: flex;
+        align-items: center;
+    }
+    .title:before,
+    .title:after {
+        content: "";
+        flex-grow: 1;
+        height: 1px;
+        background: #e2ddd4;
+        display: block;
+    }
+    .title:before {
+        margin-right: 1em;
+    }
+    .title:after {
+        margin-left: 1em;
+    }
+
+}
+
+//---------------------Shopping Guideの設定---------------------
+.guide {
+    .box {
+
+        background: white;
+        margin: 3px;
+        padding: 15px;
+
+        h5,
+        h6,
+        p {
+            font-weight: bold;
+            color: #887f69;
+            margin-bottom: 0;
+        }
+    } //.box
+    @media (min-width: 551px) {
+        display: flex;
+        flex-direction: row;
+
+        .box {
+            width: 50%;
+            padding: 20px;
+
+            h5 {
+                @include fontsize(18);
+            }
+        }
+    } //@media (min-width: 551px)
+} //.guide
+//---------------------スマホsearchの設定---------------------
+@media (max-width: 550px) {
+    .search {
+        background: white;
+        width: 93%;
+        margin-top: 20px;
+        padding: 10px;
+
+        .serch_title {
+            display: none;
+        } //formの設定
+        #form02 {
+            background-color: #eee;
+            width: 94%;
+            height: 40px;
+            border: none;
+            margin: 10px;
+        }
+        #form02 input {
+            vertical-align: top;
+            margin: 0 10px;
+            height: 100%;
+            background-color: #eee;
+        }
+
+        #input02 {
+            border: none;
+            width: 20%;
+            padding-left: 10px;
+        }
+        #submit02 {
+            width: 30px;
+            border: none;
+            background-image: url(../images/top/search_icon.png);
+            background-position: 95% center;
+            background-repeat: no-repeat;
+            float: right;
+        }
+
+    } //---------------------スマホ各リンクの設定---------------------
+    .link,
+    .categories {
+        background-color: $brown1;
+        background-image: url(../images/top/next_icon.png);
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        width: 93%;
+        margin-top: 20px;
+        padding: 18px 10px;
+
+
+    }
+    .down_categries {
+        background-image: url(../images/top/down_icon.png);
+    } //カテゴリーのメニュー部分
+    #categories {
+        cursor: pointer;
+
+        .arrow {
+            float: right;
+            padding: 20px 5px;
+        }
+    }
+    .categories_toggle {
+        display: none;
+        li {
+            list-style: none;
+            background-color: white;
+            border: 1px solid #eee;
+            background-image: url(../images/top/next_icon_gray.png);
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            width: 93%;
+            padding: 18px 10px;
+            margin-bottom: 0;
+
+            a {
+                text-decoration: none;
+                color: $brown1;
+            }
+
+        }
+
+    } //.categories_toggle
+    //aboutの設定 
+    .about_title {
+        background: $brown1;
+        width: 93%;
+        margin-top: 20px;
+        padding: 18px 10px;
+
+    }
+    .about {
+        background: white;
+        width: 93%;
+        margin-bottom: 20px;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: row;
+
+        p {
+            padding: 5px;
+        }
+
+        .about_photo {
+            margin-bottom: 0;
+        }
+
+        p.about_photo img {
+            width: 300px;
+        }
+    }
+} //@media (max-width: 550px)
+//---------------------PCでのサイド設定---------------------
+@media (min-width: 551px) {
+    .search {
+        background: white;
+        width: 100%;
+        padding: 10px;
+
+        .serch_title {
+            padding: 0px 8px;
+        } //formの設定
+        #form02 {
+            background-color: #eee;
+            width: 94%;
+            height: 40px;
+            border: none;
+            margin: 6px;
+        }
+        #form02 input {
+            margin: 0 5px;
+            height: 100%;
+            background-color: #eee;
+        }
+
+        #input02 {
+            border: none;
+            width: 40%;
+        }
+        #submit02 {
+            border: none;
+            background-image: url(../images/top/search_icon.png);
+            background-position: 80% center;
+            background-repeat: no-repeat;
+            float: right;
+        }
+
+    } //ページリンクの設定 //categories 
+    .link,
+    .categories {
+        background-color: $brown1;
+        background-image: url(../images/top/next_icon.png);
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        width: 100%;
+        margin-top: 20px;
+        padding: 18px 10px;
+
+
+    }
+
+    .down_categries {
+        background-image: url(../images/top/down_icon.png);
+    } //カテゴリーのメニュー部分
+    #categories {
+        cursor: pointer;
+
+
+        .arrow {
+            float: right;
+            padding: 20px 5px;
+        }
+
+    }
+    .categories_toggle {
+        display: none;
+        li {
+            list-style: none;
+            background-color: white;
+            border: 1px solid #eee;
+            color: $brown1;
+            background-image: url(../images/top/next_icon_gray.png);
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            width: 100%;
+            padding: 18px 10px;
+            margin-bottom: 0;
+
+            a {
+                text-decoration: none;
+                color: $brown1;
+            }
+        }
+
+    } //.categories_toggle
+    //aboutの設定 
+    .about_title {
+        background: $brown1;
+        width: 100%;
+        margin-top: 20px;
+        padding: 18px 10px;
+    }
+
+    .about_text {
+        margin: 0;
+    }
+
+    .about {
+        background: white;
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 10px;
+
+        .about_photo {
+            margin-bottom: 5px;
+            padding: 8px;
+        }
+        .about_btn {
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 0;
+        }
+
+    }
+} //@media (min-width: 551px)
+////---------------------ここからlist.html---------------------////
+.pan_navi {
+    background-color: #e8e4da;
+    background-image: url(../images/list/home_icon.png);
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    padding: 10px 10px;
+    border-radius: 6px;
+    margin: 0 0 10px 0;
+
+    .pan_text {
+        color: $brown1;
+        padding: 2px 0 0 20px;
+        a {
+            text-decoration: none;
+            color: $brown1;
+        }
+    } //.pan_text
+} //.pan_navi
+#list_cover {
+    img {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .image_sp {
+        display: none;
+    }
+    @media (max-width: 550px) {
+        .image_sp {
+            display: block;
+        }
+        .image_pc {
+            display: none;
+        }
+    }
+}
+
+
+//---------------------BACK_NEXTのボタン設定---------------------//
+//ボタンの作成
+.box1 {
+    @include fontsize(14);
+    font-weight: bold;
+    display: block;
+    color: #fff;
+    background-color: $brown1;
+    margin: 20px 0;
+    padding: 20px 50px;
+}
+
+//ボタンを横に並べる
+.backnext {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+////---------------------ここからproducts.html---------------------////
+//PCの画像指定
+.detail {
+    background: white;
+    padding: 40px;
+
+    .text {
+        border-bottom: 1px solid #e3e8cf;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .name {
+            font-weight: bold;
+        }
+        .number {
+            @include fontsize(10);
+            color: $brown1;
+        }
+    }
+
+    .productsimg {
+        display: flex;
+        border-bottom: 1px solid #e3e8cf;
+    }
+    #bigimg {
+        width: 76%;
+        padding: 0 10px 0 0;
+    }
+
+    #smallimg {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+        width: 26%;
+        margin-bottom: 0;
+        li {
+            list-style: none;
+            width: 47%;
+            padding: 0 0 3px;
+            margin: 0px;
+            cursor: pointer;
+        }
+    }
+}
+
+//SPの画像指定
+@media (max-width: 550px) {
+    .detail {
+        padding: 10px;
+    }
+    .productsimg {
+        flex-direction: column;
+
+        #bigimg {
+            width: 100%;
+        }
+        #smallimg {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 13px;
+            li {
+                width: 18%;
+                padding: 3px 0;
+            }
+        }
+    }
+}
+
+//詳細表示設定
+.colorsize {
+    margin: 20px 0;
+
+}
+
+@media (max-width: 550px) {
+ .colorsize {
+    margin: 20px 0;
+
+}   
+}
+
+//詳細表テーブル
+.colorsize{
+table{
+    width: 100%;
+    th{
+       background: #f9f9f5;
+       color: $brown1;   
+    border: 1px solid #e3e8cf;
+            text-align: center;
+    }
+    
+    td{
+       color: $brown1;   
+    border: 1px solid #e3e8cf;
+            text-align: center;        
+    }
+}
+}
+
+#price_area{
+    display: flex;
+     justify-content: space-between;
+    border-bottom: 1px solid #e3e8cf;
+    
+    .pricebox{
+        width: 55%;
+    } 
+    
+    .price{
+    display: flex;
+    border-top: 1px solid #e3e8cf;
+    
+    .price_img{
+    text-align: left;
+    padding: 30px 20px 20px 0 ;
+    margin: 0;
+    width: 25%;
+} 
+    .price_text1{
+        padding: 20px 0 20px 0 ;
+        margin: 0;
+        @include fontsize(20);
+        color: red;
+        font-style: italic;
+        
+        span{
+        @include fontsize(12);            
+        }
+}
+    .price_text2{
+        padding: 20px 0 20px 0 ;
+        margin: 0;
+        @include fontsize(10);
+        margin-top: 11px;
+}
+    .price_text3{
+        background: white;
+        border:  1px solid #e3e8cf;
+        margin: 10px; 
+        width: 50%;
+}
+ }
+ 
+ .add_img{
+    padding: 13px 0;
+}
+}
+
+@media (max-width: 550px){
+    #price_area{
+        flex-direction: column;
+        .pricebox{
+        width: 100%;
+    } 
+     .add_img{
+ text-align: center;
+}
+    }
+    
+}
+
+.comment{
+        h6{
+            font-weight: bold;
+            color: #887f69;
+            margin-bottom: 0;
+            padding: 30px 0 10px;
+            border-bottom: 1px solid $brown1;
+        }
+        
+       .comment_title{
+            padding: 20px 0 10px;
+            border: none;  
+            }
+        
+}
+
+
+
+.comment_table {
+        table{
+    width: 100%;
+    th{
+        width: 25%;
+       background: #f9f9f5;
+       color: $brown1;   
+    border: 1px solid #e3e8cf;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    td{
+        width: 65%;
+       color: $brown1; 
+    border: 1px solid #e3e8cf;
+            text-align: center;
+            @include fontsize(10);
+    }
+}
+    }
+
+@media (max-width: 550px) {
+    .comment_table {
+    margin: 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        padding-bottom: 0px;
+        margin-bottom: 0;
+        
+        .color1 {
+            border: 1px solid #e3e8cf;
+            width: 20%;
+            padding: 10px;
+            margin-bottom: 0;
+            background: #f9f9f5;
+            text-align: center;
+            color: $brown1;
+        }
+        .color2 {
+            border: 1px solid #e3e8cf;
+            width: 65%;
+            padding: 10px;
+            margin-top: 0;
+            margin-bottom: 0;
+            background: white;
+            text-align: center;
+            color: $brown1;
+            @include fontsize(10);
+        }
+    }
+}
+
+
+//---------------------footerの設定---------------------//
+@media (max-width: 550px) {
+
+    .pagetop {
+        text-align: center;
+        padding: 20px 0;
+        border-bottom: 1px solid $brown1;
+        margin-top: 20px;
+    }
+    .footer {
+        p {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .copylight {
+            color: #b8b4ac;
+        }
+
+    }
+} //@media (max-width: 550px)
+@media (min-width: 551px) {
+
+
+    .footer {
+        p {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .copylight {
+            color: #b8b4ac;
+        }
+        .pagetop {
+            text-align: right;
+            padding: 20px 0;
+            border-bottom: 1px solid $brown1;
+            margin-top: 20px;
+        }
+
+    }
+} //@media (min-width: 551px)
